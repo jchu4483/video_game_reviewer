@@ -4,4 +4,7 @@ class Review < ActiveRecord::Base
   has_many :tags, :through => :review_tags
 
   validates_presence_of :title, :content, :score
+  
+  extend Slugifiable::ClassMethods
+  include Slugifiable::InstanceMethods
 end
