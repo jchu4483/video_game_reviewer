@@ -29,5 +29,23 @@ class ReviewController < ApplicationController
     erb :'/reviews/show'
   end
 
+  get '/reviews/:slug/edit' do
+    @review = Review.find_by_slug(params[:slug])
+    if !logged_in?
+      redirect '/login'
+    else
+      if review = current_user.reviews.find_by_slug(params[:slug])
+        erb :"/reviews/edit"
+      else
+        redirect '/reviews'
+      end
+    end
+  end
 
+  patch "/reviews/:slug" do
+    @review = Review.find_by_slug(params[:slug])
+    @review.update(params[:review])
+
+    redirect "/reviews/#{@review.slug}"
+  end
 end

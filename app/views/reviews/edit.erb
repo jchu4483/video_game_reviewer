@@ -1,0 +1,17 @@
+<h1>Edit your review!</h1>
+<h2>Here is your old review to edit:</h2>
+<div>
+<h3><%= @review.title %></h3>
+<h3><%= @review.content %></h3>
+<h3><%= @review.score %></h3>
+</div>
+
+Update Your Review Here:
+<div>
+<form action="/reviews/<%= @review.slug %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  New Title: <input type="text" name="review[title]">
+  New Content: <input type="text" name="review[content]">
+  New Score: <input type ="text" name="review[score]">
+</form>
+</div>
