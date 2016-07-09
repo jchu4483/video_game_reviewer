@@ -5,6 +5,7 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :sessions
     set :sessions_secret, "authentication_sinatra"
   end
 
@@ -25,7 +26,7 @@ class ApplicationController < Sinatra::Base
     def current_user
       @current_user ||= Author.find_by(:email => session[:email]) if session[:email]
     end
-    
+
   end
 
 end

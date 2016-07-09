@@ -2,9 +2,10 @@ class SessionController < ApplicationController
 
   get '/login' do
     if !logged_in?
+      @author = Author.new
       erb :'/sessions/login'
     else
-      redirect '/reviews/new'
+      redirect '/reviews/index'
     end
   end
 
@@ -13,7 +14,7 @@ class SessionController < ApplicationController
 
     if @author and @author.authenticate(params[:password])
       session[:email] = @author.email
-      redirect '/reviews/new'
+      erb :'/reviews/new'
     else
       erb :"/sessions/login"
     end
