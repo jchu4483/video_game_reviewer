@@ -1,3 +1,4 @@
+require 'rack-flash'
 class SessionController < ApplicationController
 
   get '/login' do
@@ -16,7 +17,7 @@ class SessionController < ApplicationController
       session[:email] = @author.email
       redirect '/reviews'
     else
-      erb :"/sessions/login"
+      erb :"/sessions/login", locals: {message: "Invalid email or password! Please try again."}
     end
   end
 

@@ -25,8 +25,7 @@ class ReviewController < ApplicationController
       flash[:message] = "Successfully created a new review."
       redirect "/reviews/#{@review.slug}"
     else
-      flash[:message] = "That title is already in use. Please choose another and try again."
-      erb :'/review/new'
+      erb :'/reviews/new', locals: {message: "Oops! Something went wrong. Please try again."}
     end
   end
 

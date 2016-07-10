@@ -1,6 +1,6 @@
-<% if flash[:message] != nil %>
-    <div class="alert"><%= flash.now[:message] %></div>
-  <% end %>
+<% unless locals.empty? %>
+  <%= message %>
+<% end %>
 
 A New Review:
 <form action='/reviews' method="POST">
