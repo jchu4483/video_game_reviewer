@@ -58,7 +58,7 @@ class ReviewController < ApplicationController
     else
       if review = current_user.reviews.find_by_slug(params[:slug])
         @review.delete
-        redirect to "/reviews"
+        "Your review has been deleted"
       else
         redirect "/reviews"
       end

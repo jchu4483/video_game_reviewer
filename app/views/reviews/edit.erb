@@ -1,18 +1,35 @@
 <h1>Edit your review!</h1>
 <h2>Here is your old review to edit:</h2>
 <div>
-<h3><%= @review.title %></h3>
-<h3><%= @review.content %></h3>
-<h3><%= @review.score %></h3>
+<h3>Title: <%= @review.title %></h3>
+<h3>Content: <%= @review.content %></h3>
+<h3>Score: <%= @review.score %></h3>
+<% @review.tags.each do |tag| %>
+  <%= tag.name %>
+  <% end %>
 </div>
 
 Update Your Review Here:
+
 <div>
 <form action="/reviews/<%= @review.slug %>" method="POST">
   <input type="hidden" name="_method" value="PATCH">
   New Title: <input type="text" name="review[title]">
   New Content: <input type="text" name="review[content]">
   New Score: <input type ="text" name="review[score]">
+
+    <ul>
+      <%@review.tags.each do |tag|%>
+        <li>
+          <input type="checkbox" id="tag_<%=tag.id%>" name="review[tag_ids][]" value="<%=tag.id%>" <%='checked' if @review.tags.include?(tag)%>><label for="tag_<%=tag.id%>"><%=tag.name%></label>
+        </li>
+      <%end%>
+
+      </br>
+
+      <li>New Tag: <input type="text" name="post[new_added_tag]"></li>
+
+    </ul>
   <input type = "submit" value="Submit">
 </form>
 </div>

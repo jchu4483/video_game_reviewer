@@ -8,6 +8,10 @@ class Review < ActiveRecord::Base
   extend Slugifiable::ClassMethods
   include Slugifiable::InstanceMethods
 
+  def author_name=(name)
+    self.author = Author.find_or_create_by(:name => name)
+  end
+
   def add_tag_by_name(name)
     tag = Tag.find_or_create_by(:name => name)
     self.review_tags.build(:tag => tag)
