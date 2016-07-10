@@ -1,3 +1,7 @@
+<% if flash[:message] != nil %>
+    <div class="alert"><%= flash.now[:message] %></div>
+  <% end %>
+
 A New Review:
 <form action='/reviews' method="POST">
 <h1> Title of review: <input type ="text" name="review[title]"></h1>
@@ -12,7 +16,7 @@ A New Review:
 
     <%@tags.each do |tag|%>
       <li>
-        <input type="checkbox" id="tag_<%=tag.id%>" name="review[tag_ids][]" value="<%=tag.id%>" />
+        <input type="checkbox" id="tag_<%=tag.id%>" name="review[tag_ids][]" value="<%=tag.id%>"/>
         <label for="tag_<%=tag.id%>"><%=tag.name%></label>
       </li>
     <%end%>

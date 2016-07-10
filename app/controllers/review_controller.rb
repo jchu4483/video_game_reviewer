@@ -1,4 +1,6 @@
 class ReviewController < ApplicationController
+  use Rack::Flash
+
   get '/reviews' do
     @reviews = Review.all
     erb :'reviews/index'
@@ -21,6 +23,7 @@ class ReviewController < ApplicationController
     if @review.save
       redirect "/reviews/#{@review.slug}"
     else
+      flash[:message] = "That title is already in use. Please choose another and try again."
       erb :'/review/new'
     end
   end

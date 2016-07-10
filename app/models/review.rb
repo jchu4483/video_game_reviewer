@@ -3,7 +3,10 @@ class Review < ActiveRecord::Base
   has_many :review_tags
   has_many :tags, :through => :review_tags
 
-  validates_presence_of :title, :content, :score
+  validates_presence_of :title, message: "Title cannot be blank"
+  validates_presence_of :content, message: "Content cannot be blank"
+  validates_presence_of :score, message: "Score cannot be blank"
+  validates_uniqueness_of :title
 
   extend Slugifiable::ClassMethods
   include Slugifiable::InstanceMethods
