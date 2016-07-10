@@ -9,7 +9,8 @@ class ReviewController < ApplicationController
       @author = Author.new
       erb :'/sessions/login'
     else
-      @post = Post.new
+      @tags = Tag.all
+      @review = Review.new
       erb :'/reviews/new'
     end
   end
@@ -48,4 +49,20 @@ class ReviewController < ApplicationController
 
     redirect "/reviews/#{@review.slug}"
   end
+
+  delete "/reviews/:slug/delete" do
+    @review = Review.find_by_slug(params[:slug])
+
+    if !logged_in?
+      redirect "/login"
+    else
+      if review = current_user.reviews.find_by_slug(params[:slug])
+        @review.delete
+        redirect to "/reviews"
+      else
+        redirect "/reviews"
+      end
+    end
+  end
+
 end

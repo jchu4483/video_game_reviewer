@@ -5,7 +5,7 @@ class SessionController < ApplicationController
       @author = Author.new
       erb :'/sessions/login'
     else
-      redirect '/reviews/index'
+      redirect '/reviews/new'
     end
   end
 
@@ -14,7 +14,7 @@ class SessionController < ApplicationController
 
     if @author and @author.authenticate(params[:password])
       session[:email] = @author.email
-      erb :'/reviews/index'
+      redirect '/reviews'
     else
       erb :"/sessions/login"
     end
@@ -22,6 +22,6 @@ class SessionController < ApplicationController
 
   get '/logout' do
     logout
-    redirect "/reviews"
+    "You have logged out"
   end
 end

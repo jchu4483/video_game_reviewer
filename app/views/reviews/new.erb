@@ -4,5 +4,23 @@ A New Review:
 <h3> Content of review: <input type ="text" name="review[content]"></h1>
 <h3> Score of review: <input type ="text" name="review[score]"></h1>
 
+  <ul>
+    <label>Tags:</label>
+
+    </br>
+    </br>
+
+    <%@tags.each do |tag|%>
+      <li>
+        <input type="checkbox" id="tag_<%=tag.id%>" name="review[tag_ids][]" value="<%=tag.id%>" />
+        <label for="tag_<%=tag.id%>"><%=tag.name%></label>
+      </li>
+    <%end%>
+
+    </br>
+
+    <li>New Tag: <input type="text" name="review[new_added_tag]"></li>
+  </ul>
+
 <input type="submit" value="Submit">
 </form>
