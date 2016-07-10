@@ -34,7 +34,7 @@ class ReviewController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      if review = current_user.reviews.find_by_slug(params[:slug])
+      if @review = current_user.reviews.find_by_slug(params[:slug])
         erb :"/reviews/edit"
       else
         redirect '/reviews'

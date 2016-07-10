@@ -14,7 +14,7 @@ class SessionController < ApplicationController
 
     if @author and @author.authenticate(params[:password])
       session[:email] = @author.email
-      erb :'/reviews/new'
+      erb :'/reviews/index'
     else
       erb :"/sessions/login"
     end
