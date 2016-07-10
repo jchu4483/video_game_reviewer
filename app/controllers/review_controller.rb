@@ -1,3 +1,4 @@
+require 'rack-flash'
 class ReviewController < ApplicationController
   use Rack::Flash
 
@@ -21,6 +22,7 @@ class ReviewController < ApplicationController
     @review = Review.new(params[:review])
     @review.author = current_user
     if @review.save
+      flash[:message] = "Successfully created a new review."
       redirect "/reviews/#{@review.slug}"
     else
       flash[:message] = "That title is already in use. Please choose another and try again."
