@@ -5,6 +5,11 @@ class Author < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_presence_of :email, :name
 
-  extend Slugifiable::ClassMethods
-  include Slugifiable::InstanceMethods
+  def slug
+    self.name.gsub(" ", ",")
+  end
+
+  def self.find_by_slug(slug)
+    self.all.detect {|instance| instance.slug == slug}
+  end
 end

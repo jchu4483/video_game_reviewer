@@ -7,5 +7,6 @@ end
 use Rack::MethodOverride
 use AuthorsController
 use SessionController
+use TagsController
 use ReviewController
 run ApplicationController

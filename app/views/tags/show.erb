@@ -1,0 +1,26 @@
+
+<div class="container">
+  <%if @tag.present?%>
+    <h1>Reviews with: <%=@tag.name%></h1>
+
+    <%if @tag.reviews.present?%>
+      <%@tag.reviews.each do |review|%>
+        <li>
+          <ul>
+            <p>
+              <h5><a href="/reviews/<%=review.slug%>"><%=review.title%></a></h5>
+            </p>
+            <%if review.author.present?%>
+              <label>Written by: </label>
+              <a href="/authors/<%=review.author.slug%>"><%=review.author.name%></a>
+            <%end%>  
+          </ul>
+        </li>
+       <%end%>
+    <%end%>
+  <%else%>
+    <div class="center-align">
+      <img src="/images/404.png" alt="404">
+    </div>
+  <%end%>
+</div>

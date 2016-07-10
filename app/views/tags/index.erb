@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Tags List</h1>
+
+  <%@tags.each do |tag|%>
+    <div class="chip">
+      <a href="/tags/<%=tag.slug%>"><%=tag.name%></a>
+      <i class="material-icons"></i>
+    </div>
+  <%end%>
+</div>

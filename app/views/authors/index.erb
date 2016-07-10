@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Authors List</h1>
+
+  <%@authors.each do |author|%>
+    <li>
+      <ul>
+        <p>
+          <div class="collection">
+            <a href="/authors/<%=author.slug%>" class="collection-item orange lighten-5"><%=author.name%></a>
+          </div>
+        </p>
+      </ul>
+    </li>
+   <%end%>
+</div> 

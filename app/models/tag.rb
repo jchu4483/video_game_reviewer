@@ -3,6 +3,11 @@ class Tag < ActiveRecord::Base
   has_many :review_tags
   has_many :reviews, :through => :review_tags
 
-  extend Slugifiable::ClassMethods
-  include Slugifiable::InstanceMethods
+  def slug
+    self.name.gsub(" ", ",")
+  end
+
+  def self.find_by_slug(slug)
+    self.all.detect {|instance| instance.slug == slug}
+  end
 end

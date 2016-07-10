@@ -21,6 +21,7 @@ class ReviewController < ApplicationController
   post '/reviews' do
     @review = Review.new(params[:review])
     @review.author = current_user
+    @review.save
     if @review.save
       flash[:message] = "Successfully created a new review."
       redirect "/reviews/#{@review.slug}"
